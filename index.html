@@ -31,6 +31,7 @@ body {
   height:100%;
   background:url('https://i.imgur.com/YKY28eT.png');
   animation:move 60s linear infinite;
+  z-index:-2;
 }
 
 @keyframes move {
@@ -78,7 +79,7 @@ button {
 <div class="bg"></div>
 <div class="stars"></div>
 
-<div id="login">
+<div id="login" style="position: relative; z-index: 10;">
   <h2>اكتب mory عشان تفتح ❤️</h2>
   <input id="code">
   <button onclick="check()">فتح</button>
