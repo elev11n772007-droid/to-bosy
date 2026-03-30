@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Amr ❤️ Bosy</title>
+
+<style>
+body {
+  margin:0;
+  font-family: Arial;
+  color:white;
+  text-align:center;
+  overflow:hidden;
+  background:black;
+}
+
+/* خلفية */
+.bg {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:url('IMAGE_LINK_HERE') center/cover no-repeat;
+  filter: blur(5px) brightness(0.4);
+  z-index:-1;
+}
+
+/* نجوم */
+.stars {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:url('https://i.imgur.com/YKY28eT.png');
+  animation:move 60s linear infinite;
+}
+
+@keyframes move {
+  from{background-position:0 0;}
+  to{background-position:1000px 1000px;}
+}
+
+/* قلب */
+.heart {
+  font-size:70px;
+  animation:beat 1s infinite;
+}
+
+@keyframes beat {
+  50%{transform:scale(1.2);}
+}
+
+/* ظرف */
+#envelope {
+  font-size:120px;
+  cursor:pointer;
+  color:pink;
+  text-shadow:0 0 25px hotpink;
+}
+
+/* رسالة */
+#message {
+  display:none;
+  width:80%;
+  margin:auto;
+  margin-top:20px;
+  font-size:20px;
+}
+
+/* زر */
+button {
+  padding:10px 20px;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="stars"></div>
+
+<div id="login">
+  <h2>اكتب mory عشان تفتح ❤️</h2>
+  <input id="code">
+  <button onclick="check()">فتح</button>
+</div>
+
+<div id="content" style="display:none;">
+  <div class="heart">❤️</div>
+  <h2>Amr ❤️ Bosy</h2>
+
+  <h3 id="counter"></h3>
+
+  <div id="envelope" onclick="openMsg()">💌</div>
+
+  <div id="message"></div>
+
+  <button onclick="playVoice()">اضغط هنا ❤️</button>
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
+</audio>
+
+<audio id="voice">
+  <source src="VOICE_LINK_HERE">
+</audio>
+
+<script>
+let text = "بوسي انا بحبك حب عمر محد يقدر يحب زيو انتي كل حياتي لما بقولك بحبك بقولها و انا حاسس بقلبي بيبقي بينبض باسمك بوسي انتي مراتي حبيبتي و ام عيالي و ده بجد م كلام بقولو و خلاص و مش عاوزك تنسي ابدا ولا الشك يجيلك حتي ان انا بقولك كلمه و تكون من ورا قلبي انا بجد يا غزالتي كل كلمه بقولهالك بحسها و ببقي عاوز اقولها ع دايما بحب اشوف الفرحه في عينكي انا بفرح بفرحتك و بزعل لما تزعلي و بدايق لما اشوفك نفسك في حاجه و انا م عارف اعملهالك عشان بعد المسافات بس ده وعد مني ليكي و عمرك متنسي انا هاجي و هتقدملك و هاخدك من بيتك لبتنا يا منجتي ( انا بحبك حب م اي حب حب واحد بيحب حبيبتو بجد ). 😘";
+
+function check(){
+  if(document.getElementById("code").value === "mory"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("content").style.display="block";
+    document.getElementById("music").play();
+    startCounter();
+  } else {
+    alert("غلط 😅");
+  }
+}
+
+function openMsg(){
+  let i=0;
+  let msg=document.getElementById("message");
+  msg.style.display="block";
+
+  function type(){
+    if(i<text.length){
+      msg.innerHTML+=text[i];
+      i++;
+      setTimeout(type,30);
+    }
+  }
+  type();
+}
+
+/* عداد الحب */
+function startCounter(){
+  let start = new Date();
+  start.setMonth(start.getMonth() - 5);
+  start.setDate(start.getDate() - 18);
+  start.setHours(start.getHours() - 20);
+
+  setInterval(()=>{
+    let now = new Date();
+    let diff = now - start;
+
+    let days = Math.floor(diff/(1000*60*60*24));
+    let hours = Math.floor(diff/(1000*60*60)) % 24;
+
+    document.getElementById("counter").innerHTML =
+    "مع بعض بقالنا " + days + " يوم و " + hours + " ساعة ❤️";
+  },1000);
+}
+
+function playVoice(){
+  document.getElementById("voice").play();
+}
+</script>
+
+</body>
+</html>
